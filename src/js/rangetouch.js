@@ -155,7 +155,11 @@ class RangeTouch {
         const thumbWidth = ((100 / clientRect.width) * (this.config.thumbWidth / 2)) / 100;
 
         // Determine left percentage
-        percent = (100 / clientRect.width) * (touch.clientX - clientRect.left);
+        if(clientRect.height > clientRect.width) {
+            percent = (100 / clientRect.height) * (touch.clientY - clientRect.top);
+        } else {
+            percent = (100 / clientRect.width) * (touch.clientX - clientRect.left);
+        }
 
         // Don't allow outside bounds
         if (percent < 0) {
